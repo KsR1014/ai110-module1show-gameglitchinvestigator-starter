@@ -76,6 +76,4 @@ The habit I want to carry forward is testing a fix before believing it, writing 
 
 Next time, I'd tackle bugs one at a time with the AI rather than asking about all of them at once, since fixing the first bug shifted everything below it and the guidance for the later bugs no longer lined up. 
 
-Overall, I now see AI-generated code as a confident first draft rather than a finished answer; it can read as clean and professional while still being wrong, so I verify it before trusting it.
-
-
+This project made me see that AI-generated code should be used as a confident first draft rather than a finished answer. I'll need to verify it before trusting it.

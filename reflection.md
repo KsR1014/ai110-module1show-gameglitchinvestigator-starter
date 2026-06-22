@@ -47,11 +47,21 @@ To be honest, Claude did not provide any misleading/incorrect information; howev
   and what it showed you about your code.
 - Did AI help you design or understand any tests? How?
 
+A bug counted as fixed only when I could reproduce the original broken behavior and then see it gone in both the running app and an automated test. For the backwards-hint bug, I wanted a test that would fail on the old swapped logic; for the out-of-range bug, I checked not just that an invalid guess was rejected but that it no longer used up an attempt.
+
+I ran pytest tests/test_game_logic.py. The test test_too_high_hint_says_go_lower calls check_guess(60, 50) and asserts the message says "LOWER," which confirmed the hint direction was finally correct. Running the suite also revealed that three starter tests compared the (outcome, message) tuple to a plain string, so they had never actually passed. I fixed them to unpack the tuple and ended at 9/9 passing.
+
+AI helped me design tests that targeted the two bugs directly, including boundary cases I might have skipped (1 and 100 valid, -1 and 101 rejected). It also explained why the starter tests were failing instead of just telling me to change them, which helped me trust the fix.
+
 ---
 
 ## 4. What did you learn about Streamlit and state?
 
 - How would you explain Streamlit "reruns" and session state to a friend who has never used Streamlit?
+
+Every time you click a button or type something, Streamlit re-runs the whole script from top to bottom, which means normal variables reset each time. 
+
+To remember things like the secret number, attempts, and score, you have to store them in st.session_state, which survives those reruns. Working on this game made it clear that "state" is just anything you need to outlive a single rerun.
 
 ---
 
@@ -61,3 +71,11 @@ To be honest, Claude did not provide any misleading/incorrect information; howev
   - This could be a testing habit, a prompting strategy, or a way you used Git.
 - What is one thing you would do differently next time you work with AI on a coding task?
 - In one or two sentences, describe how this project changed the way you think about AI generated code.
+
+The habit I want to carry forward is testing a fix before believing it, writing a check that fails on the broken version first so a passing result actually means something instead of just looking right. 
+
+Next time, I'd tackle bugs one at a time with the AI rather than asking about all of them at once, since fixing the first bug shifted everything below it and the guidance for the later bugs no longer lined up. 
+
+Overall, I now see AI-generated code as a confident first draft rather than a finished answer; it can read as clean and professional while still being wrong, so I verify it before trusting it.
+
+

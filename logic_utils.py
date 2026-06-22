@@ -3,7 +3,7 @@ def get_range_for_difficulty(difficulty: str):
     raise NotImplementedError("Refactor this function from app.py into logic_utils.py")
 
 
-#FIX: Refactored logic into logic_utils.py from app.py using agent mode
+#FIX: Refactored logic into logic_utils.py from app.py using agent mode; made it so that guess would count only if number was within the range
 def parse_guess(raw: str, low: int, high: int):
     """
     Parse user input into an int guess and validate it is within [low, high].
@@ -29,7 +29,7 @@ def parse_guess(raw: str, low: int, high: int):
 
     return True, value, None
 
-#FIX: Refactored logic into logic_utils.py from app.py using agent mode
+#FIX: Refactored logic into logic_utils.py from app.py using agent mode; fixed the "opposite hint issue"
 def check_guess(guess, secret):
     """
     Compare guess to secret and return (outcome, message).
